@@ -1,3 +1,4 @@
+#Geschreven door Jordy Verberne
 from flask import Flask, render_template, request, make_response, jsonify
 from authomatic.adapters import WerkzeugAdapter
 from authomatic import Authomatic
