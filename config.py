@@ -35,8 +35,8 @@ CONFIG = {
     'google': {
         'class_': oauth2.Google,
 
-        'consumer_key': '720517098054-atk65gegsir3j4j7o55u03qhoof1sjk5.apps.googleusercontent.com',
-        'consumer_secret': 'rtE8KjipCctSyDTz8sO0wNw9',
+        'consumer_key': '720517098054-brce7i85j0fr9uj4hln4gobveq6h2fvi.apps.googleusercontent.com',
+        'consumer_secret': '0N9uKA9Zo5OtnKdw2_bL6JcQ',
         'id': authomatic.provider_id(),
         'scope': oauth2.Google.user_info_scope + [
             'https://www.googleapis.com/auth/calendar',
