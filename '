@@ -1,0 +1,26 @@
+  web:
+    build: ./webapp
+    container_name: "webapp" 
+    ports:
+      - "443:443"
+    #volumes:
+    #  - webapp:/todo
+    environment:
+      - DB = mongodb://mongodb:27017/MAF
+      - ENV=development
+      - PORT=4000
+    links:
+      - db
+  db:
+    image: mongo:3.0.2
+    restart: always
+    container_name: "mongodb" 
+    volumes:
+      - /data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: P@ssword
+    #ports:
+      #- "27017:27017"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro

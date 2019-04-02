@@ -1,13 +1,15 @@
-web:
-  build: .
-  command: python -u app.py
-  ports:
-    - "443:443"
-  volumes:
-    - .:/todo
-  links:
-    - db
-db:
-  image: mongo:3.0.2
-  volumes:
-    - /data/db
+version: '3'
+services:
+  web:
+    build: ./webapp
+    #command: python -u app.py
+    ports:
+      - "443:5000"
+    volumes:
+      - ./webapp:/todo
+    links:
+      - db
+    depends_on:
+      - db
+  db:
+    image: mongo:3.0.2
