@@ -61,11 +61,8 @@ def login(provider_name):
 
 
 class query(Resource):
-    #curl https://192.168.1.101:5000/query -k -d 'kaartid=73288188241L' -X GET
-    @app.route('/query', methods=['GET'])#, 'PUT'])
-    def get():#, kaartid):
-        args = parser.parse_args()
-	kaartid=args['kaartid']
+    @app.route('/query/<kaartid>/', methods=['GET'])#, 'PUT'])
+    def get(kaartid):#, kaartid):
 	cursor = collection.find({"kaartID":kaartid})
 	return dumps(cursor[0])
 
