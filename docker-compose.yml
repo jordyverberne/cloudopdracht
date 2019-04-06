@@ -2,6 +2,7 @@ version: '3'
 services:
   web:
     build: ./webapp
+    image: jordyverberne/klautopdracht:latest
     #command: python -u app.py
     ports:
       - "443:5000"
