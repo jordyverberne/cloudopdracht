@@ -44,7 +44,8 @@ def login(provider_name):
             result.user.update()
 
         cursor = collection.find({"email":result.user.email})
-	naam = "{}".format(cursor[0]['voornaam']+ ' '+ cursor[0]['achternaam'])
+
+        naam = "{}".format(cursor[0]['voornaam']+ ' '+ cursor[0]['achternaam'])
         email = cursor[0]['email']
         kaart = cursor[0]['kaartID']
         checkin = cursor[0]['checkin']
@@ -54,7 +55,7 @@ def login(provider_name):
             timespend.append(b-a)
 
         # The rest happens inside the template.
-        return render_template('login.html',email=email, result=result,naam=naam, timespend=timespend,kaart=kaart)
+        return render_template('login.html', result=result, email=email, result=result,naam=naam, timespend=timespend,kaart=kaart)
 
     # Don't forget to return the response.
     return response
