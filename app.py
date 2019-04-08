@@ -71,10 +71,8 @@ class query(Resource):
 
 
 class checkInOut(Resource):
-    @app.route('/checkinout', methods=['PUT'])
+    @app.route('/checkinout/<kaartid>/', methods=['PUT'])
     def put():
-        args = parser.parse_args()
-	kaartid=args['kaartid']
 	tijd = int(time.time())
 	cursor = collection.find({"kaartID":kaartid})
 	if len(cursor[0]['checkin']) == len(cursor[0]['checkout']):
