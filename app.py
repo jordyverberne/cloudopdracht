@@ -70,16 +70,16 @@ class query(Resource):
 	return dumps(cursor[0])
 
 
-class checkInOut(Resource):
-    @app.route('/checkinout/<kaartid>/', methods=['PUT'])
-    def put():
+class checkinout(Resource):
+    @app.route('/checkinout/<kaartid>/', methods=['GET'])
+    def checkinout(kaartid):
 	tijd = int(time.time())
 	cursor = collection.find({"kaartID":kaartid})
 	if len(cursor[0]['checkin']) == len(cursor[0]['checkout']):
 	    collection.update({"kaartID":kaartid}, {'$push':{'checkin':tijd}})
 	elif len(cursor[0]['checkin']) > len(cursor[0]['checkout']):
 	    collection.update({"kaartID":kaartid}, {'$push':{'checkout':tijd}})
-        return jsonify({'status': 'ok'})
+        return jsonify(status='okay')
 
 
 

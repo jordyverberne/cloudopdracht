@@ -9,6 +9,10 @@
     {% if result.user %}
 
 	<h1>Welkom {{ naam }}</h1>
+	<h2>Je kaartID is: {{ kaart }}</h2>
+        <h2>aantal minuten gesport: {% for i in timespend: %}</h2>
+        <h2> {{i/60}}</h2>
+	{% endfor %}
         <h2>Je bent nu ingelogt, klik <a href='http://mijn.mennoaltijdfit.tk/index.php?voornaam={{ voornaam }}'>hier</a> om door te gaan naar mijnMAF om je gegevens in te zien en aan te passen.</h1>
 	
         
