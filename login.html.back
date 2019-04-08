@@ -11,8 +11,8 @@
         <h2>Je bent ingelogd met: {{ email }}</h2>
         <h2>Je kaartID is: {{ kaart }}</h2>
         <h2>aantal minuten gesport: {% for i in timespend: %}</h2>
-	<h2> {{i/60}}</h2>
-	{% endfor %}
+        <h2> {{i/60}}</h2>
+        {% endfor %}
 	
         
     {% endif %}

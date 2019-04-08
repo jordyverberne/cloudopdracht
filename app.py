@@ -15,7 +15,8 @@ from bson.json_util import dumps
 
 parser = reqparse.RequestParser()
 parser.add_argument('kaartid')
-client = MongoClient("mongodb://mongodb:27017")
+#client = MongoClient("jordyverberne.nl:27017")
+client = MongoClient("mongodb://database:27017")
 db = client.MAF
 collection = db.sporters
 # Instantiate Authomatic.
@@ -23,7 +24,8 @@ authomatic = Authomatic(CONFIG, 'P@ssword', report_errors=False)
 parser.add_argument('kaartid')
 
 app = Flask(__name__, template_folder='.')
-app.config["MONGO_URI"] = "mongodb://mongodb:27017"
+app.config["MONGO_URI"] = "mongodb://database:27017"
+#app.config["MONGO_URI"] = "jordyverberne.nl:27017"
 api = Api(app)
 @app.route('/')
 def index():
@@ -44,7 +46,7 @@ def login(provider_name):
             result.user.update()
 
         cursor = collection.find({"email":result.user.email})
-
+  	voornaam = cursor[0]['voornaam']
         naam = "{}".format(cursor[0]['voornaam']+ ' '+ cursor[0]['achternaam'])
         email = cursor[0]['email']
         kaart = cursor[0]['kaartID']
@@ -55,7 +57,7 @@ def login(provider_name):
             timespend.append(b-a)
 
         # The rest happens inside the template.
-        return render_template('login.html', result=result, email=email, result=result,naam=naam, timespend=timespend,kaart=kaart)
+        return render_template('login.html', result=result, voornaam=voornaam, email=email, naam=naam, timespend=timespend,kaart=kaart)
 
     # Don't forget to return the response.
     return response
@@ -84,4 +86,4 @@ class checkInOut(Resource):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port='5000', ssl_context='adhoc')
+    app.run(debug=True, host='0.0.0.0', port='5000')
