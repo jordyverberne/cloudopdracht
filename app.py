@@ -15,7 +15,8 @@ from bson.json_util import dumps
 
 parser = reqparse.RequestParser()
 parser.add_argument('kaartid')
-client = MongoClient("mongodb://database:27017")
+#client = MongoClient("mongodb://database:27017")
+client = MongoClient("mongodb://jordyverberne.nl:27017")
 db = client.MAF
 collection = db.sporters
 # Instantiate Authomatic.
@@ -23,7 +24,8 @@ authomatic = Authomatic(CONFIG, 'P@ssword', report_errors=False)
 parser.add_argument('kaartid')
 
 app = Flask(__name__, template_folder='.')
-app.config["MONGO_URI"] = "mongodb://database:27017"
+#app.config["MONGO_URI"] = "mongodb://database:27017"
+app.config["MONGO_URI"] = "mongodb://jordyverberne.nl:27017"
 api = Api(app)
 @app.route('/')
 def index():
@@ -83,3 +85,5 @@ class checkinout(Resource):
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port='5000')
+
+#soiadjf
