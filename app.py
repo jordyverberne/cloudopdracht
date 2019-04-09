@@ -15,7 +15,6 @@ from bson.json_util import dumps
 
 parser = reqparse.RequestParser()
 parser.add_argument('kaartid')
-#client = MongoClient("jordyverberne.nl:27017")
 client = MongoClient("mongodb://database:27017")
 db = client.MAF
 collection = db.sporters
@@ -25,7 +24,6 @@ parser.add_argument('kaartid')
 
 app = Flask(__name__, template_folder='.')
 app.config["MONGO_URI"] = "mongodb://database:27017"
-#app.config["MONGO_URI"] = "jordyverberne.nl:27017"
 api = Api(app)
 @app.route('/')
 def index():
@@ -64,7 +62,7 @@ def login(provider_name):
 
 
 class query(Resource):
-    @app.route('/query/<kaartid>/', methods=['GET'])#, 'PUT'])
+    @app.route('/query/<kaartid>/', methods=['GET'])
     def get(kaartid):#, kaartid):
 	cursor = collection.find({"kaartID":kaartid})
 	return dumps(cursor[0])
